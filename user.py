@@ -51,6 +51,19 @@ def user_interface():
                     stats = GameStats()
                     display_menu()
                 else:
+                    print("Thank you for playing")
+                    break
+            else:
+                print("You guessed incorrectly: "  + guessed_phrase + "is not the secret phrase\n"
+                "The secret phrase was: " + phrase)
+                x = end_game_sequence
+                if x:
+                    hidden_phrase, phrase = phrase_collector()
+                    hide_message()
+                    stats = GameStats()
+                    display_menu()
+                else:
+                    print("Thank you for playing\nBetter luck next time")
                     break
             
         elif x == "3":
