@@ -16,7 +16,8 @@ class GameStats:
     
     def correct_guess(self, guess):
         """gives back 5 percent health for correct guess"""
-        self.health += 5 
+        if self.health <= 95:
+            self.health += 5 
         self.right_guesses += guess
     
     def __repr__(self):

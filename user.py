@@ -3,6 +3,7 @@ from guesser import *
 import time 
 
 def user_interface():
+    """controls the flow of the game and the user inputs"""
     hidden_phrase, phrase = phrase_collector()
     hide_message()
     display_menu()
@@ -67,15 +68,18 @@ def user_interface():
                     break
             
         elif x == "3":
-            print(stats.wrong_guesses)
+            print("Incorrected guesses:", stats.wrong_guesses)
         
         elif x== "4":
-            print(stats.right_guesses)
+            print("Correct guesses:", stats.right_guesses)
         
         elif x == "5":
-            print(stats.health)
+            print("You have " + str(stats.health) + " percent health remaining")
         
         elif x == "6":
+            print("You have " + str(stats.remaining_guesses) + " remaining")
+
+        elif x == "7":
             print("Thank you for playing")
             break
         
@@ -83,6 +87,7 @@ def user_interface():
             print("Invalid Input. Please Try Again")
         
 def end_game_sequence():
+    """Takes user input for if they want to play another game and returns a boolean True/False"""
     x = input("Do you want to play again (y/n) ").lower()
     if x == "y":
         return True
@@ -90,22 +95,26 @@ def end_game_sequence():
         return False
 
 def phrase_collector():
+    """takes the phrase from the user and hides it using the formatter function. Returns the hidden phrase and the original phrase"""
     x = input("Please enter your secret phrase: ").lower()
     hidden_phrase = formatter(x)
     return hidden_phrase, x 
 
 def hide_message():
+    """takes no parameters and hides the secret message after a 3 second delay"""
     print("Hiding the secret message...")
     time.sleep(3)
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     
         
 def display_menu():
+    """displays the options for the user to pick from for game"""
     print("(1) Guess a letter ")
     print("(2) Guess a the complete phrase ")
     print("(3) Display incorrect guesses ")
     print("(4) Display corrected guesses ")
     print("(5) Display Health Stats ")
-    print("(6) Quit")
+    print("(6) Display Number of Remaining Guesses")
+    print("(7) Quit")
     
 user_interface()
