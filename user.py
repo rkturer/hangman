@@ -1,13 +1,38 @@
 from gamestats import *
 from guesser import *  
 import time 
+import os 
+from itertools import zip_longest
+
+def create_info_list(guesses_remaining, correct_letters, incorrect_letters):
+    info_lst = [""]
+    info_lst += ["You have: " + str(guesses_remaining) + "guesses remaining"]
+    info_lst += ["These letters are in the secret phrase: " + str(correct_letters)]
+    info_lst += ["These letters are NOT in the secret phrase: " + str(incorrect_letters)]
+    for i in range(15):
+        info_lst += [""]
+    return info_lst
+
+def create_ascii_list(ascii_file_path):
+    ascii_lst = []
+    x = open(ascii_file_path)
+    for line in x:
+        line = line[:-1]
+        ascii_lst += [line]
+    return ascii_lst 
 
 def user_interface():
     """controls the flow of the game and the user inputs"""
+    stats = GameStats()
+    
     hidden_phrase, phrase = phrase_collector()
     hide_message()
-    display_menu()
-    stats = GameStats()
+    info_list = create_info_list(stats.remaining_guesses, stats.right_guesses, stats.wrong_guesses)
+    ascii_list = create_ascii_list("ascii_art/art_hangman_0.txt")
+    #display_menu()
+    for info_line, ascii_line in zip_longest(info_list, ascii_list):
+        print(f"{ascii_line:<15}{info_line}")
+        
     while True:
         if stats.health <= 0:
             print("Game Over\nThe secret phrase was: " + phrase)
