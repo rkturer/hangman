@@ -1,2 +1,3 @@
 .__pycache__/*
-.ascii_env
+ascii_env
+.DS_Store

@@ -4,15 +4,15 @@ class GameStats:
     def __init__(self):
         """initalizes the health and remaining guesses for the user"""
         self.health = 100
-        self.remaining_guesses = 5 
+        self.remaining_guesses = 6 
         self.wrong_guesses = []
         self.right_guesses = []
     
     def wrong_guess(self, guess):
         """removes health and guesses for a wrong guess"""
-        self.health -= 20
-        self.remaining_guesses = self.health // 20  
+        self.remaining_guesses -=1
         self.wrong_guesses += guess
+
     
     def correct_guess(self, guess):
         """gives back 5 percent health for correct guess"""
