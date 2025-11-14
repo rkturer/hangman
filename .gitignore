@@ -1,4 +1,13 @@
-.__pycache__/*
-.ascii_env/*
+# Bytecode
+__pycache__/
+*.pyc
+
+# Environments
+ascii_env/
+.env/
+
+# App files
+player_login.txt
+
+# macOS
 .DS_Store
-.player_login.txt
