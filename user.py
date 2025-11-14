@@ -4,15 +4,18 @@ from gamestats import *
 from ascii import *
 from info import *
 from itertools import zip_longest
-
+from login import *
 
 def user_interface():
     """controls the flow of the game and the user inputs"""
+    print()
     stats = GameStats()
     ascii_file = store_file_paths()
     ascii = Ascii(ascii_file)
     phr = Phrase()
-
+    log = Login()
+    user = log.start_sequence1()
+    print()
     start_sequence()
     while True:
         game_mode = input("Enter 1 for gamemode 1 or 2 for gamemmode 2: ").strip()
@@ -36,12 +39,15 @@ def user_interface():
         if stats.remaining_guesses == 0:
             phr.extra_phrase = "Game Over: The secret phrase was: " + phr.phrase
             display(stats, phr, ascii)
+            user.add_game_to_file(stats, phr)
             break
         
         if "#" not in phr.hidden_phrase:
             phr.extra_phrase = f"CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}"
             ascii.win_phase()
+            stats.win = True
             display(stats, phr, ascii)
+            user.add_game_to_file(stats, phr)
             break
             
         #handles initial set up
@@ -53,7 +59,10 @@ def user_interface():
             if full_guess.strip().lower() == phr.phrase.strip().lower():
                 phr.extra_phrase =  f"CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}"
                 ascii.win_phase()
+                stats.win = True
+                stats.full_guess = True
                 display(stats, phr, ascii)
+                user.add_game_to_file(stats, phr)
                 break
             
             else:

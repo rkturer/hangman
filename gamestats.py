@@ -1,12 +1,18 @@
 #Rachel Turer --> Hangman Game using OOP
 class GameStats:
     
+
+
     def __init__(self):
         """initalizes the health and remaining guesses for the user"""
         self.remaining_guesses = 6 
         self.total_guesses = 0
         self.wrong_guesses = []
         self.right_guesses = []
+        self.game = "hangman"
+        self.result = ""
+        self.full_guess = False
+        self.win = False
     
     def wrong_guess(self, guess):
         """removes health and guesses for a wrong guess"""
@@ -20,7 +26,7 @@ class GameStats:
             return True
     
     def correct_guess(self, guess):
-        """gives back 5 percent health for correct guess"""
+        """updates attributes occordinly for correct guesses"""
         self.right_guesses += guess
         self.total_guesses +=1
     

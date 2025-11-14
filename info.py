@@ -13,6 +13,7 @@ class Phrase:
         self.random_txt_file = "hangman_phrases.txt"
         self.extra_phrase = ""
         self.num_chars = 0
+        self.is_random = False
 
     def formatter(self):
         """takes the secret phrase as an input and reformats it to keep the shape but hide the letters"""
@@ -21,6 +22,7 @@ class Phrase:
             self.hidden_phrase = self.hidden_phrase + len(components[i]) * "#"
             self.hidden_phrase += " "
         self.hidden_phrase += len(components[-1]) * "#"
+        self.find_num_chars()
     
     def checker(self, char):
         """takes the phrase and a character and returns a list of indexes where the character occurs in the phrase""" 
@@ -63,6 +65,7 @@ class Phrase:
 
     def random_phrase(self):
         """takes a list of strings as an input and randomly selects and returns a string"""
+        self.is_random = True
         self.phrase = random.choice(self.random_list)
     
     
@@ -83,7 +86,3 @@ class Phrase:
             info_lst += [""] 
 
         return info_lst
-
-
-
-

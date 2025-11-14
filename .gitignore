@@ -1,3 +1,4 @@
-__pycache__/*
-ascii_env
+.__pycache__/*
+.ascii_env/*
 .DS_Store
+.player_login.txt
