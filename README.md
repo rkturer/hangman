@@ -6,6 +6,10 @@ A simplified version of the classic hangman game with two game modes. In the ran
 
 A modularized python program with a terminal user interface. The gamestats.py file uses a object oriented programming to store total guesses, number of remaining guesses, a list of the correct guesses and incorrect guesses. The info.py file handles everything related to the phrase inputted by the user or chosen randomly from a hangman_phrases.txt file. Objects of the Phrase class have the these attributes phrase, hidden_phrase, number of characters in phrase and a few others. Methods of the class allow the interface to change the hidden phrase to reveal the correct guesses as well as track the incorrect guesses and remaining guesses. The user.py file handles all of the user input and calls the functions and methods from the other py files to run the game smoothly. The ascii.py file stores the file paths to the ascii art and turns the ascii art into a list with each element being a line. All of the ascii art is in text file in the ascii_art folder. To run the program download all of the py files in the repository and run terminal for the user.py file.
 
+## **User Profile**
+
+This program asks for the user to log into their account, create an account, or play as a guest. The program stores data from the rounds which you can read about in [text](user_text_files_README.md) for future analytics. The accounts are secure with a password being put into a player_login.txt file. The password is encrypted before arrival for extra security. Users can reset passwords and delete accounts. More to come in the following days. 
+
 ## **About the Creator**
 
 - Rachel Turer - Computer Science and Statistics Major at Boston University
