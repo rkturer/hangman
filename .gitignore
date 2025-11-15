@@ -8,6 +8,7 @@ ascii_env/
 
 # App files
 player_login.txt
+player_data/
 
 # macOS
 .DS_Store

@@ -1,6 +1,7 @@
 from player import *
 class Login:
     """handles login process for user and the initialization of the user profile object"""
+
     def __init__(self):
         """initalizes the file path to the file that stores the usernames and passwords """
         self.log = "player_login.txt"
@@ -64,6 +65,11 @@ class Login:
         user_count = 0
         pswd_count = 0
         while True:
+            if user_count > 2:
+                print("\nThe account you are looking for does not exist.\nPlease create an account.\n")
+                self.start_sequence1()
+            else:
+                pass
             username = input("Please enter your username: ")
             user_count +=1 
             if self.verify_user(username):
@@ -74,7 +80,8 @@ class Login:
                         if reset_pswd == "y":
                             self.reset_password(username)
                             break
-
+                        else:
+                            pass
                     password = input("Please enter your password: ")
                     encrpyted_password = self.encrypt_password(password).strip()
                     components = self.lines_to_components(self.file_to_lines())

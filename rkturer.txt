@@ -1,5 +1,0 @@
-hangman,True,True,9,6,3,16,True
-hangman,True,True,9,7,1,11,True
-hangman,True,True,7,4,3,16,True
-hangman,True,True,13,10,3,18,True
-hangman,False,False,9,3,6,13,True
