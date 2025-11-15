@@ -34,6 +34,7 @@ class Phrase:
         return indexes 
 
     def find_num_chars(self):
+        """finds the number of characters in the hidden phrase"""
         components = self.phrase.split()
         for component in components:
             self.num_chars += len(component)

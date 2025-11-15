@@ -1,8 +1,6 @@
 #Rachel Turer --> Hangman Game using OOP
 class GameStats:
-    
-
-
+    """updates and stores all the relavant stats for the round of the game"""
     def __init__(self):
         """initalizes the health and remaining guesses for the user"""
         self.remaining_guesses = 6 

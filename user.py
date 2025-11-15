@@ -95,6 +95,7 @@ def user_interface():
         
 def display(stats, phr, ascii):
     
+    """takes stats phr and ascii objects as parameters and prints the display screen to termianl"""
     info_list = phr.create_info_list(stats)
 
     ascii_list = ascii.create_ascii_list()

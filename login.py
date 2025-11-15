@@ -1,9 +1,9 @@
 from player import *
 class Login:
-
+    """handles login process for user and the initialization of the user profile object"""
     def __init__(self):
+        """initalizes the file path to the file that stores the usernames and passwords """
         self.log = "player_login.txt"
-        self.n = 5
 
     
     def create_account(self):
@@ -35,6 +35,7 @@ class Login:
                 
     
     def start_sequence1(self):
+        """displays output menu to terminal and innitalizes the userprofile object"""
         print("Welcome to terminal hangman!\n1) Login to your account\n2) Create an account\n3) Play as a guest\n4) Delete your existing account")
         while True:
             choice = input("Pick one of the options above: ").lower().strip()
@@ -125,6 +126,7 @@ class Login:
     
     
     def reset_password(self,username):
+        """changes the password in the player_login.txt file"""
         if self.verify_user(username):
             components = self.lines_to_components(self.file_to_lines())
             for profile in components:
@@ -140,7 +142,7 @@ class Login:
         self.edit_file_with_components(components)
                 
     def edit_file_with_components(self, components):
-        
+        """edits the play_login.txt file and rewrites with the from the parameter components"""
         with open(self.log, "w") as file:
             for pair in components:
                 file.writelines(f"{pair[0]},{pair[1]}\n")
@@ -148,6 +150,7 @@ class Login:
             
 
     def lines_to_components(self, lines):
+        """takes the lines of the text file and changes so they are seperated by fields"""
         components = []
         for line in lines:
             components += [line.split(",")]
