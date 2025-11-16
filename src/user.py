@@ -6,17 +6,23 @@ from src.info import Phrase
 from itertools import zip_longest
 from src.login import Login
 
-def user_interface():
+def begin_program():
+    """sets up the initial log in"""
+    print()
+    log = Login()
+    user = log.start_sequence1()
+    print()
+    return user 
+
+def user_interface(user):
     """controls the flow of the game and the user inputs"""
     print()
     stats = GameStats()
     ascii_file = store_file_paths()
     ascii = Ascii(ascii_file)
     phr = Phrase()
-    log = Login()
-    user = log.start_sequence1()
-    print()
     start_sequence()
+
     while True:
         game_mode = input("Enter 1 for gamemode 1 or 2 for gamemmode 2: ").strip()
         if game_mode == "1":
@@ -40,6 +46,7 @@ def user_interface():
             phr.extra_phrase = "Game Over: The secret phrase was: " + phr.phrase
             display(stats, phr, ascii)
             user.add_game_to_file(stats, phr)
+            play_again(user)
             break
         
         if "#" not in phr.hidden_phrase:
@@ -48,6 +55,7 @@ def user_interface():
             stats.win = True
             display(stats, phr, ascii)
             user.add_game_to_file(stats, phr)
+            play_again(user)
             break
             
         #handles initial set up
@@ -63,6 +71,7 @@ def user_interface():
                 stats.full_guess = True
                 display(stats, phr, ascii)
                 user.add_game_to_file(stats, phr)
+                play_again(user)
                 break
             
             else:
@@ -70,6 +79,8 @@ def user_interface():
                 phr.hidden_phrase = phr.phrase
                 ascii.lose_phase()
                 display(stats, phr, ascii)
+                user.add_game_to_file(stats, phr)
+                play_again(user)
                 break
         
         elif guess == "quit":
@@ -113,4 +124,14 @@ def start_sequence():
     """takes no inputs and prints a formatted string to start the program"""
     print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2) Enter your own pharse to start game")
     
-
+def play_again(user):
+    while True:
+        again = input("Do you want to play again? (y/n) ")
+        if again == "y": 
+            user_interface(user)
+            break
+        elif again == "n":
+            print("Thank you for playing!")
+            break
+        else:
+            print("You must respond yes or no")
