@@ -5,6 +5,7 @@ from src.ascii import Ascii, store_file_paths
 from src.info import Phrase
 from itertools import zip_longest
 from src.login import Login
+from src.grapher import Graphing
 
 def begin_program():
     """sets up the initial log in"""
@@ -21,10 +22,18 @@ def user_interface(user):
     ascii_file = store_file_paths()
     ascii = Ascii(ascii_file)
     phr = Phrase()
+    g = Graphing()
+    if g.want_graph():
+        g.display_tracked_fields()
+        graph = g.graph_type()
+        g.plotter(graph, user)
+    else:
+        pass
     start_sequence()
 
     while True:
-        game_mode = input("Enter 1 for gamemode 1 or 2 for gamemmode 2: ").strip()
+       
+        game_mode = input("Enter 1 for gamemode 1 or 2 for gamemode 2: ").strip()
         if game_mode == "1":
             phr.create_list_of_phrases()
             phr.random_phrase()
@@ -122,14 +131,13 @@ def hide_message():
 
 def start_sequence():
     """takes no inputs and prints a formatted string to start the program"""
-    print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2) Enter your own pharse to start game")
+    print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2) Enter your own phrase to start game")
     
 def play_again(user):
     while True:
         again = input("Do you want to play again? (y/n) ")
         if again == "y": 
-            user_interface(user)
-            break
+            return user_interface(user)   
         elif again == "n":
             print("Thank you for playing!")
             break
