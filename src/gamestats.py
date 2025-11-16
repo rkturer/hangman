@@ -1,4 +1,4 @@
-#Rachel Turer --> Hangman Game using OOP
+
 class GameStats:
     """updates and stores all the relavant stats for the round of the game"""
     def __init__(self):
@@ -20,8 +20,8 @@ class GameStats:
     
     def has_guessed(self, guess):
         """takes parameters as guess nad stats objects and checks if the guess is already"""
-        if guess in self.wrong_guesses or guess in self.right_guesses: 
-            return True
+        return guess in self.wrong_guesses or guess in self.right_guesses
+
     
     def correct_guess(self, guess):
         """updates attributes occordinly for correct guesses"""

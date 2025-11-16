@@ -1,10 +1,11 @@
-from player import *
+import os
+from src.player import UserProfile
 class Login:
     """handles login process for user and the initialization of the user profile object"""
 
     def __init__(self):
         """initalizes the file path to the file that stores the usernames and passwords """
-        self.log = "player_login.txt"
+        self.log = os.path.join("data", "player_login.txt")
 
     
     def create_account(self):
@@ -83,10 +84,10 @@ class Login:
                         else:
                             pass
                     password = input("Please enter your password: ")
-                    encrpyted_password = self.encrypt_password(password).strip()
+                    encrypted_password = self.encrypt_password(password).strip()
                     components = self.lines_to_components(self.file_to_lines())
                     for line in components:
-                        if line[-1].strip() == encrpyted_password:
+                        if line[-1].strip() == encrypted_password:
                             print(f"Login successful. Welcome, {line[0]}")
                             user = UserProfile(username)
                             return user
@@ -144,9 +145,10 @@ class Login:
                         if password1 != password2:
                             print("Passwords do not match. Please try again!")
                         else:
-                            profile[-1] = password1
+                            encrypted_password = self.encrypt_password(password1)
+                            profile[-1] = encrypted_password
                             break
-        self.edit_file_with_components(components)
+            self.edit_file_with_components(components)
                 
     def edit_file_with_components(self, components):
         """edits the play_login.txt file and rewrites with the from the parameter components"""
@@ -176,8 +178,9 @@ class Login:
     def verify_user(self, username):
         """takes username as a parameter and returns true if the username is registered or false"""
         lines = self.file_to_lines()
-        for line in lines:
-            if username in line:
+        components = self.lines_to_components(lines)
+        for fields in components:
+            if username == fields[0]:
                 return True
         return False
 

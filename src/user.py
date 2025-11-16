@@ -1,10 +1,10 @@
-#Rachel Turer --> Hangman Game using OOP
+
 import time
-from gamestats import *
-from ascii import *
-from info import *
+from src.gamestats import GameStats
+from src.ascii import Ascii, store_file_paths
+from src.info import Phrase
 from itertools import zip_longest
-from login import *
+from src.login import Login
 
 def user_interface():
     """controls the flow of the game and the user inputs"""
@@ -111,7 +111,6 @@ def hide_message():
 
 def start_sequence():
     """takes no inputs and prints a formatted string to start the program"""
-    print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2)Enter your own pharse to start game")
+    print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2) Enter your own pharse to start game")
     
-user_interface()
 

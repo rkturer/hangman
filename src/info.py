@@ -1,6 +1,6 @@
 #Rachel Turer --> Hangman Game using OOP
 import random
-from gamestats import *
+import os
 class Phrase:
 
     """handles everything regarding the hidden phrase """
@@ -10,7 +10,7 @@ class Phrase:
         self.phrase = "" 
         self.hidden_phrase = ""
         self.random_list = []
-        self.random_txt_file = "hangman_phrases.txt"
+        self.random_txt_file =  os.path.join("data", "hangman_phrases.txt")
         self.extra_phrase = ""
         self.num_chars = 0
         self.is_random = False
@@ -56,13 +56,12 @@ class Phrase:
 
     def create_list_of_phrases(self):
         """takes a file path as input and reads everyline in file and puts each line into a list. returns the list"""            
-        file = open(self.random_txt_file)
+        with open(self.random_txt_file) as file:
     
-        for line in file:
-            line = line[:-1] #remove the \n 
-            self.random_list += [line.lower()]
-            
-        file.close()
+            for line in file:
+                line = line[:-1] #remove the \n 
+                self.random_list += [line.lower()]
+
 
     def random_phrase(self):
         """takes a list of strings as an input and randomly selects and returns a string"""

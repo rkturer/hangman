@@ -1,5 +1,4 @@
 import os
-
 class UserProfile:
     """handles a players profile"""
 
