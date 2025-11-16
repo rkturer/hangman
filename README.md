@@ -48,6 +48,10 @@ Below is an example output of the program:
         player_login.txt
     /player_data
         /user files and plots
+    /assets
+        /analytics.png
+        /hangman.png
+        /user_auth.png
     /src 
         ascii.py 
         gamestats.py
