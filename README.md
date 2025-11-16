@@ -1,6 +1,6 @@
 # **Hangman Terminal Game**
 
-[screenshot of hangman setup](/assets/hangman.png)
+[screenshot of hangman setup](assets/hangman.png)
 
 A version of the classic hangman game with two game modes. In the Random Game Mode you will guess a phrase randomly selected from the data set. In the user input game mode the user inputs a secret message in the terminal for the player to guess. The player can guess letters or the full secret message. Every incorrect letter guess adds a body part to the ascii art hangman. If you try a full guess and are incorrect you lose! If you run out of guesses, you lose. Good Luck!
 
@@ -10,7 +10,7 @@ A terminal hangman game that asks the user to log in, create an account, or play
 
 Below is a screenshot of the user authentication: 
 
-[user authentication screenshot](/assets/user_auth.png)
+[user authentication screenshot](assets/user_auth.png)
 
 ## **Features**
 
@@ -28,7 +28,7 @@ After each round of hangman the game stats explained in [CSV_README.md](CSV_READ
 
 Below is an example output of the program:
 
-[Analytics Screenshot](/assets/analytics.png)
+[Analytics Screenshot](assets/analytics.png)
 
 ## **Folder Structure**
 
