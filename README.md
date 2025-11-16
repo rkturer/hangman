@@ -1,6 +1,6 @@
 # **Hangman Terminal Game**
 
-A simplified version of the classic hangman game with two game modes. In the random gamemode you will guess a phrase randomly selected from the data set. In the user input game mode the user to inputs a secret message in the terminal for you to guess. The player can guess letters or the full secret message. Every incorrect letter guess reduces adds a body part to the ascii art hangman. If you try a full guess and are incorrect you lose! If run out of guesses, you lose. Good Luck!
+A version of the classic hangman game with two game modes. In the random gamemode you will guess a phrase randomly selected from the data set. In the user input game mode the user to inputs a secret message in the terminal for the player to guess. The player can guess letters or the full secret message. Every incorrect letter guess reduces adds a body part to the ascii art hangman. If you try a full guess and are incorrect you lose! If run out of guesses, you lose. Good Luck!
 
 ## **Description**
 
