@@ -1,7 +1,6 @@
-
 import time
 from src.gamestats import GameStats
-from src.ascii import Ascii, store_file_paths
+from src.ascii import Ascii
 from src.info import Phrase
 from itertools import zip_longest
 from src.login import Login
@@ -19,14 +18,12 @@ def user_interface(user):
     """controls the flow of the game and the user inputs"""
     print()
     stats = GameStats()
-    ascii_file = store_file_paths()
-    ascii = Ascii(ascii_file)
+    ascii = Ascii()
     phr = Phrase()
-    g = Graphing()
-    if g.want_graph():
+    if want_graph():
+        g = Graphing()
         g.display_tracked_fields()
-        graph = g.graph_type()
-        g.plotter(graph, user)
+        g.plotter(user)
     else:
         pass
     start_sequence()
@@ -143,3 +140,14 @@ def play_again(user):
             break
         else:
             print("You must respond yes or no")
+
+def want_graph():
+        """takes user input and returns true if wants a graph to visualize their data"""
+        while True:
+            graph = input("Would you like a graph visualize the your data? (y/n) ").strip().lower()
+            if graph == "y":
+                return True
+            elif graph == "n":
+                return False
+            else:
+                print("You must choose yes (y) or no (n) to continue")

@@ -3,48 +3,41 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import numpy as np
 
+NUMERICAL_METRICS = ["num_characters", "right_guesses", "wrong_guesses", "total_guesses"]
+CATEGORICAL_METRICS = ["game", "win", "is_random", "full_guess"]
+CATEGORICAL_LABELS = {
+                            "win" : ["wins", "losses"],
+                            "game" : ["hangman", "other"],
+                            "is_random" : ["random", "user_input"],
+                            "full_guess" : ["used_full_guess", "did_not_use_full_guess"]
+                    }
+
 class Graphing:
 
     def __init__(self):
-           
-        self.numerical_metrics = ["num_characters", "right_guesses", "wrong_guesses", "total_guesses"]
-        self.categorical_metrics = ["game", "win", "is_random", "full_guess"]
-        self.categorical_labels = {
-                                    "win" : ["wins", "losses"],
-                                    "game" : ["hangman", "other"],
-                                    "is_random" : ["random", "user_input"],
-                                    "full_guess" : ["used_full_guess", "did_not_use_full_guess"]
-                                }
-
-    def want_graph(self):
-        """takes user input and returns true if wants a graph to visualize their data"""
-        while True:
-            graph = input("Would you like a graph visualize the your data? (y/n) ").strip().lower()
-            if graph == "y":
-                return True
-            elif graph == "n":
-                return False
-            else:
-                print("You must choose yes (y) or no (n) to continue")
+        
+        
+        self.graph = self.graph_type()
+    
 
     def graph_type(self):
         """offers a menu of graph and takes user input and returns the type of graph they want"""
 
         print("Graph Options:\n1) scatter plot\n2) Histogram\n3) Pie Chart")
         while True:
-            graph = input("Please choose a graph from the menu above.").strip()
-            if graph == "1":
+            self.graph = input("Please choose a graph from the menu above.").strip()
+            if self.graph == "1":
                 return 'scatter'
-            elif graph == "2":
+            elif self.graph == "2":
                 return 'hist'
-            elif graph == "3":
+            elif self.graph == "3":
                 return 'pie'
             else:
                 print("You must pick an option above.\nFor example, to pick a Pie Chart enter '1'")
     
     
-    def collect_numerical_axes(self, graph):
-        if graph == 'scatter':
+    def collect_numerical_axes(self):
+        if self.graph == 'scatter':
             while True:
                 x_axis = input("Please enter the metric for the x axis: ")
                 if self.is_numerical(x_axis):
@@ -60,9 +53,9 @@ class Graphing:
         else:
             print("Given graph was not numerical")
 
-    def collect_numerical_axis(self, graph):
+    def collect_numerical_axis(self):
         """takes user input to collect numerical metric for histogram"""
-        if graph == 'hist':
+        if self.graph == 'hist':
             while True:
                 x_axis = input("Please enter the metric for the x axis: ")
                 if self.is_numerical(x_axis):
@@ -72,8 +65,8 @@ class Graphing:
         else:
             print("Invalid graph has been inputted")
 
-    def collect_categorical_metrics(self, graph):
-        if graph == "pie":
+    def collect_categorical_metrics(self):
+        if self.graph == "pie":
             while True:
                 metric = input("What metric would you like to visualize? ")
                 if self.is_categorical(metric):
@@ -150,9 +143,9 @@ class Graphing:
     
     def make_labels_pie(self, metric):
         """takes a metric as parameter and turns appropraite labels for pie chart"""
-        for met in self.categorical_labels:
+        for met in CATEGORICAL_LABELS:
             if metric == met:
-                return self.categorical_labels[met]
+                return CATEGORICAL_LABELS[met]
         return "Error has occurred"
 
 
@@ -187,7 +180,7 @@ class Graphing:
     def is_numerical(self, input_metric):
         """takes a metric from a user and returns true if the metric is tracked in the CSV file otherwise returns false"""
         
-        for ele in self.numerical_metrics:
+        for ele in NUMERICAL_METRICS:
             if ele == input_metric:
                 return True
         return False 
@@ -195,21 +188,21 @@ class Graphing:
     def is_categorical(self, metric):
         """takes a metric from user and returns True if it is categorical data otherwise returns False"""
 
-        for ele in self.categorical_metrics:
+        for ele in CATEGORICAL_METRICS:
             if metric == ele:
                 return True
         return False
 
-    def plotter(self, graph, user):
+    def plotter(self, user):
         
-        if graph == 'scatter':
-            x, y = self.collect_numerical_axes(graph)
+        if self.graph == 'scatter':
+            x, y = self.collect_numerical_axes()
             self.create_scatter_plot(x, y, user)
-        elif graph == 'hist':
-            x = self.collect_numerical_axis(graph)
+        elif self.graph == 'hist':
+            x = self.collect_numerical_axis()
             self.create_hist(x, user)
-        elif graph == 'pie':
-            metric = self.collect_categorical_metrics(graph)
+        elif self.graph == 'pie':
+            metric = self.collect_categorical_metrics()
             self.create_pie_chart(metric, user)
         else:
             print("Invalid graph has been entered")
