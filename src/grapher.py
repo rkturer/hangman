@@ -6,10 +6,10 @@ import numpy as np
 NUMERICAL_METRICS = ["num_characters", "right_guesses", "wrong_guesses", "total_guesses"]
 CATEGORICAL_METRICS = ["game", "win", "is_random", "full_guess"]
 CATEGORICAL_LABELS = {
-                            "win" : ["wins", "losses"],
-                            "game" : ["hangman", "other"],
-                            "is_random" : ["random", "user_input"],
-                            "full_guess" : ["used_full_guess", "did_not_use_full_guess"]
+                        "win" : ["wins", "losses"],
+                        "game" : ["hangman", "other"],
+                        "is_random" : ["random", "user_input"],
+                        "full_guess" : ["used_full_guess", "did_not_use_full_guess"]
                     }
 
 class Graphing:
