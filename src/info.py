@@ -1,12 +1,18 @@
 #Rachel Turer --> Hangman Game using OOP
 import random
 import os
-class Phrase:
+from src.color import Color 
+
+
+
+class Phrase(Color):
 
     """handles everything regarding the hidden phrase """
 
     def __init__(self):
         """initalizes the phrase, hiddenphrase, random list of phrases, and the textfile path for the random phrases text, and the extra phrase"""
+        
+        super().__init__()
         self.phrase = "" 
         self.hidden_phrase = ""
         self.random_list = []
@@ -14,6 +20,7 @@ class Phrase:
         self.extra_phrase = ""
         self.num_chars = 0
         self.is_random = False
+        self.color = Color()
 
     def formatter(self):
         """takes the secret phrase as an input and reformats it to keep the shape but hide the letters"""
@@ -74,14 +81,14 @@ class Phrase:
         """creates a list of values the same length as the ascii art for the display function"""
         info_lst = [""]
         info_lst += [f"You have {stats.remaining_guesses} guesses remaining"]
-        info_lst += [f"These letters are in the secret phrase: {stats.right_guesses}"]            
-        info_lst += [f"These letters are NOT in the secret phrase: {stats.wrong_guesses}"]
+        info_lst += [f"These letters are in the secret phrase: {self.good}{stats.right_guesses}{self.reset}"]            
+        info_lst += [f"These letters are NOT in the secret phrase: {self.bad}{stats.wrong_guesses}{self.reset}"]
         for i in range(3):
             info_lst += [""] 
         info_lst += [f"{self.extra_phrase}"]
         for i in range(3):
             info_lst += [""] 
-        info_lst += [f"The hidden phrase is: {self.hidden_phrase}"]
+        info_lst += [f"The hidden phrase is: {self.header}{self.hidden_phrase}{self.reset}"]
         for i in range(7):
             info_lst += [""] 
 

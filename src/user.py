@@ -5,12 +5,16 @@ from src.info import Phrase
 from itertools import zip_longest
 from src.login import Login
 from src.grapher import Graphing
+from src.color import Color
+from src.player import UserProfile
+from src.dashboard import Dashboard
 
 def begin_program():
     """sets up the initial log in"""
     print()
     log = Login()
     user = log.start_sequence1()
+
     print()
     return user 
 
@@ -20,43 +24,48 @@ def user_interface(user):
     stats = GameStats()
     ascii = Ascii()
     phr = Phrase()
-    if want_graph():
-        g = Graphing()
-        g.display_tracked_fields()
-        g.plotter(user)
-    else:
-        pass
-    start_sequence()
+    color = Color()
+    dash = Dashboard(user.username)
 
     while True:
-       
-        game_mode = input("Enter 1 for gamemode 1 or 2 for gamemode 2: ").strip()
-        if game_mode == "1":
+        print(dash.display_dashboard())
+
+        x = dash.dash_input()
+        if x == 3:
+            g = Graphing()
+            g.display_tracked_fields()
+            g.plotter(user)
+    
+        
+        elif x == 2:
+            phr.phrase_collector()
+            phr.formatter()
+            hide_message() 
+            break
+
+        elif x ==1:
             phr.create_list_of_phrases()
             phr.random_phrase()
             phr.formatter()
             break
 
-        elif game_mode == "2":
-            phr.phrase_collector()
-            phr.formatter()
-            break
         else:
-            print("You must type 1 or 2 to continue. Please try again")
+            return "Thank you for playing"
+        
 
-    hide_message() 
+        
 
     while True:
 
         if stats.remaining_guesses == 0:
-            phr.extra_phrase = "Game Over: The secret phrase was: " + phr.phrase
+            phr.extra_phrase = f"{color.bad}Game Over: The secret phrase was: {phr.phrase}{color.reset}"
             display(stats, phr, ascii)
             user.add_game_to_file(stats, phr)
             play_again(user)
             break
         
         if "#" not in phr.hidden_phrase:
-            phr.extra_phrase = f"CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}"
+            phr.extra_phrase = f"{color.good}CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}{color.reset}"
             ascii.win_phase()
             stats.win = True
             display(stats, phr, ascii)
@@ -71,7 +80,7 @@ def user_interface(user):
         if guess == "1":
             full_guess = input("Please enter your full guess: ")
             if full_guess.strip().lower() == phr.phrase.strip().lower():
-                phr.extra_phrase =  f"CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}"
+                phr.extra_phrase =  f"{color.good}CONGRATULATIONS! You Won! The hidden phrase is: {phr.phrase}{color.reset}"
                 ascii.win_phase()
                 stats.win = True
                 stats.full_guess = True
@@ -81,7 +90,7 @@ def user_interface(user):
                 break
             
             else:
-                phr.extra_phrase = "Game Over: The secret phrase was: " + phr.phrase
+                phr.extra_phrase = f"{color.bad}Game Over: The secret phrase was: {phr.phrase}{color.reset}"
                 phr.hidden_phrase = phr.phrase
                 ascii.lose_phase()
                 display(stats, phr, ascii)
@@ -94,18 +103,18 @@ def user_interface(user):
             break
         
         elif stats.has_guessed(guess):
-            phr.extra_phrase = "Please try again: You have already guessed " + guess 
+            phr.extra_phrase = f"{color.bad}Please try again: You have already guessed {guess}{color.reset}"
 
         elif len(guess) > 1:
-            phr.extra_phrase = "Please try again: You can only guess one letter at a time unless you are guessing the full phrase"
+            phr.extra_phrase = f"{color.bad}Please try again: You can only guess one letter at a time unless you are guessing the full phrase{color.reset}"
         else:
                 indexes = phr.checker(guess)
                 if indexes == []:
-                    phr.extra_phrase = guess + " is not in the secret phrase"
+                    phr.extra_phrase = f"{color.bad}{guess} is not in the secret phrase{color.reset}"
                     stats.wrong_guess(guess)
                     ascii.update_phase(stats)
                 else:
-                    phr.extra_phrase = guess + " is in the secret phrase"
+                    phr.extra_phrase = f"{color.good}{guess} is in the secret phrase{color.reset}"
                     stats.correct_guess(guess)
                     phr.replace(indexes, guess)       
         
@@ -126,10 +135,6 @@ def hide_message():
     time.sleep(3)
     print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
-def start_sequence():
-    """takes no inputs and prints a formatted string to start the program"""
-    print("Please select your gamemode.\n1) Play with a randomly selected phrase\n2) Enter your own phrase to start game")
-    
 def play_again(user):
     while True:
         again = input("Do you want to play again? (y/n) ")

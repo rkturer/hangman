@@ -1,5 +1,6 @@
 import os
 from src.player import UserProfile
+
 class Login:
     """handles login process for user and the initialization of the user profile object"""
 

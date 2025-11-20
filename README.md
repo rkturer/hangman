@@ -16,6 +16,8 @@ Below is a screenshot of the user authentication:
 
 - User Data Analytics & Plot Generations (CSV-based statistics and visualization)
 - User Accounts (Login, Create, Delete, Update Password)
+- Dashboard (Average: win percentage, total guesses, right guesses, wrong guesses, and recent data compared to past averages)
+- Colored Indicators for Trends and in-game Guessing
 - Password Encryption (Simple Rotation Cipher)
 - User Profile Statistics Saved To CSV 
 - 2 Game Modes (Random Phrase & User Input Phrase)
@@ -23,6 +25,18 @@ Below is a screenshot of the user authentication:
 - Tracking of correct guesses, incorrect guesses, remaining guesses, and dynamically filled in hidden phrase
 
 ## **User Statistics and Analytics**
+
+### **Dashboard**
+
+After each round of hangman the dashboard updates to display overall averages on total guesses, right guesses, wrong guesses, and win percentage. The dashboard also updates to display those same averages for the most recent 5 games. The dashboard boasts colored indicators (green for positive trends, red for negative) as well as color for aesthetic appeal. The dashboard provides a visual summary of the data for the user. 
+
+The Dashboard also houses a menu to help with the flow of the UI. The user can choose their Game Mode, to visualize their data with graphs, or quit using the Dashboard menu. 
+
+Below is an example of the dashboard display:
+
+![Dashboard Screenshot](/assets/hangman_dashboard.png)
+
+### **Graphing and Storage**
 
 After each round of hangman the game stats explained in [CSV_README.md](CSV_README.md) are added to the user's personalized CSV file. The user also enjoys a personal folder storing all of their analytic visualizations (histograms, pie charts, scatter plots). The user also enjoys an interactive UI where they can create custom charts by following on screen prompts. 
 
@@ -52,6 +66,7 @@ Below is an example output of the program:
         /analytics.png
         /hangman.png
         /user_auth.png
+        /hangman_dashboard.png
     /src 
         ascii.py 
         gamestats.py
@@ -59,6 +74,8 @@ Below is an example output of the program:
         login.py
         player.py
         users.py
+        color.py
+        dashboard.py
     .gitignore
     README.md
     requirements.txt
@@ -89,6 +106,8 @@ This project has matplotlib, pandas, and numpy as dependencies. Install using th
 - GameStats - Handles storing game statistics to be placed into the CSV files
 - Phrase - Handles everything related to the secret phrase of the game
 - run_game.py - Main entry point for game, runs all other files 
+- Color - Handles everything related to the text color within the terminal outputs
+- Dashboard - Handles updating and creating the dashboard for user 
 
 ## **Notes and Known Issues**
 
