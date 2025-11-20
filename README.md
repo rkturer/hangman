@@ -34,7 +34,7 @@ The Dashboard also houses a menu to help with the flow of the UI. The user can c
 
 Below is an example of the dashboard display:
 
-![Dashboard Screenshot](/assets/hangman_dashboard.png)
+![Dashboard Screenshot](/assets/hangman_dash.png)
 
 ### **Graphing and Storage**
 
