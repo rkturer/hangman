@@ -6,7 +6,7 @@ A version of the classic hangman game with two game modes. In the Random Game Mo
 
 ## **Description**
 
-A terminal hangman game that asks the user to log in, create an account, or play as a guest. If logged in stats are tracked for each user. To learn more about the stats read [CSV_README.md](user_text_files_README.md). Users get to enjoy two Game Modes and ASCII art to display the game. This project demonstrates OOP, file handling, and UI. 
+A terminal hangman game that asks the user to log in, create an account, or play as a guest. If logged in stats are tracked for each user. To learn more about the stats read [CSV_README.md](/user_text_files_README.md). Users get to enjoy two Game Modes and ASCII art to display the game. This project demonstrates OOP, file handling, and UI. 
 
 Below is a screenshot of the user authentication: 
 
